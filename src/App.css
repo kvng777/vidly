@@ -37,6 +37,10 @@
   }
 }
 
-.pronto{
+.pronto {
   background-color: #61dafb;
+}
+
+div > p {
+  width: max-content;
 }
