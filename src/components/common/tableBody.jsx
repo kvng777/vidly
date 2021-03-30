@@ -11,6 +11,8 @@ class TableBody extends Component {
     return item._id + (column.path || column.key);
   };
 
+  createLink = (item) => {};
+
   render() {
     const { data, columns } = this.props;
 
@@ -21,6 +23,7 @@ class TableBody extends Component {
             {columns.map((column) => (
               <td key={this.createKey(item, column)}>
                 {this.renderCell(item, column)}
+                {this.createLink()}
               </td>
             ))}
           </tr>
