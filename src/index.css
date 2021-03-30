@@ -15,3 +15,8 @@ code {
 .clickable {
   cursor: pointer;
 }
+
+#passwordInput,
+#emailInput {
+  width: 50%;
+}
