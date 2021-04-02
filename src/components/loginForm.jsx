@@ -1,16 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
+import Form from "./common/form";
+import Joi from "joi-browser";
 
-class LoginForm extends Component {
-  username = React.createRef();
+class LoginForm extends Form {
+  state = {
+    data: { username: "", password: "" },
+    errors: {}
+  };
 
-  //   componentDidMount() {
-  //     this.username.current.focus();
-  //   }
+  schema = {
+    username: Joi.string().required().label("Username"),
+    password: Joi.string().required().label("Password")
+  };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-    const username = this.username.current.value;
+  doSubmit = () => {
+    //call the server
     console.log("Submitted");
   };
 
@@ -19,31 +23,9 @@ class LoginForm extends Component {
       <React.Fragment>
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
-          <div class="mb-3">
-            <label for="username" class="form-label">
-              Email address
-            </label>
-            <input
-              autoFocus
-              ref={this.username}
-              type="email"
-              className="form-control"
-              id="username"
-              aria-describedby="emailHelp"
-            />
-            <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
-            </div>
-          </div>
-          <div className="mb-3">
-            <label for="password" className="form-label">
-              Password
-            </label>
-            <input type="password" className="form-control" id="password" />
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
+          {this.renderInput("username", "Username", "text", true)}
+          {this.renderInput("password", "Password", "password")}
+          {this.renderButton("Login")}
         </form>
       </React.Fragment>
     );
