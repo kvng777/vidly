@@ -10,16 +10,8 @@ class RegisterForm extends Form {
 
   schema = {
     // username: Joi.string().required().label("Username"),
-    username: Joi.string()
-      .required()
-      .email({
-        minDomainSegments: 2,
-        tlds: { allow: ["com", "net"] }
-      }),
-    password: Joi.string()
-      .required()
-      // .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
-      .label("Password"),
+    username: Joi.string().required().email().label("Username"),
+    password: Joi.string().min(5).required().label("Password"),
     firstName: Joi.string().required().label("Name")
   };
 
