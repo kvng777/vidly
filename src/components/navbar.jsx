@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -34,16 +34,36 @@ const NavBar = () => {
                 Rentals
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">
-                Register
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
-            </li>
+            {/* //If theres no user, then render the Login and Register links */}
+            {!user && (
+              <React.Fragment>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register">
+                    Register
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    Login
+                  </Link>
+                </li>
+              </React.Fragment>
+            )}
+            {/* //If there is user, then render the user's name instead of the links */}
+            {user && (
+              <React.Fragment>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/profile">
+                    {user.name.charAt(0).toUpperCase() + user.name.slice(1)}
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    Logout
+                  </Link>
+                </li>
+              </React.Fragment>
+            )}
           </ul>
         </div>
       </div>

@@ -18,7 +18,7 @@ export function getMovie(movieId) {
 //this function should create or update a movie
 export function saveMovie(movie) {
   //UPDATE SCENARIO//
-  //first we check if this movie exists, if yes then we update
+  //check if this movie exists, if yes -> update
   if (movie._id) {
     //restful api dont like IDs in the body while request has an ID already.
     //clone the object, then delete the id
