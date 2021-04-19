@@ -24,7 +24,7 @@ class RegisterForm extends Form {
       //after custom header has been applied for jwt, store it in localstorage
       localStorage.setItem("token", response.headers["x-auth-token"]);
       //redirect user to home
-      this.props.history.push("/");
+      window.location = "/";
     } catch (ex) {
       //To check for exception or error obj has response
       if (ex.response && ex.response.status === 400) {

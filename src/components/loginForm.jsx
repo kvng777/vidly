@@ -22,7 +22,7 @@ class LoginForm extends Form {
       //access local storage and store jwt there : key, value
       localStorage.setItem("token", jwt);
       //direct the user back to home
-      this.props.history.push("/");
+      window.localStorage = "/";
     } catch (ex) {
       //check if ex has a response, and if its 400
       if (ex.response && ex.response.status === 400) {

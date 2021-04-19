@@ -14,18 +14,20 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 class App extends Component {
-  //Getting the current user//
+  //Getting the current user - START//
   state = {};
 
   componentDidMount() {
     try {
       //get the token
       const jwt = localStorage.getItem("token");
+      //decode the token with jwt
       const user = jwtDecode(jwt);
+      //then set it to new state
       this.setState({ user });
     } catch (error) {}
   }
-  //Getting the current user//
+  //Getting the current user - END//
 
   render() {
     return (
