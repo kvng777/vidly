@@ -2,6 +2,7 @@ import React from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
 import * as userService from "../services/userService";
+import auth from "../services/authService";
 // import { toast } from "react-toastify";
 
 class RegisterForm extends Form {
@@ -20,9 +21,10 @@ class RegisterForm extends Form {
   doSubmit = async () => {
     //use try catch block to log errors
     try {
+      //register user with userservice
       const response = await userService.register(this.state.data);
       //after custom header has been applied for jwt, store it in localstorage
-      localStorage.setItem("token", response.headers["x-auth-token"]);
+      auth.loginWithJWT(response.headers["x-auth-token"]);
       //redirect user to home
       window.location = "/";
     } catch (ex) {

@@ -25,7 +25,6 @@ class Movies extends Component {
     //with http request, apply async await to obtain data
     const { data } = await getGenres();
     const genres = [{ _id: "", name: "All Genres" }, ...data];
-
     const { data: movies } = await getMovies();
     this.setState({ movies, genres });
   }
@@ -104,8 +103,8 @@ class Movies extends Component {
   render() {
     const count = this.state.movies.length;
     const { pageSize, currentPage, sortColumn, searchQuery } = this.state;
-
-    if (count === 0) return <p>There are no movies in the database.</p>;
+    //extract the current user
+    const user = this.props.user;
 
     const { totalCount, data: movies } = this.getPagedData();
 
@@ -119,9 +118,12 @@ class Movies extends Component {
           />
         </div>
         <div className="col-8">
-          <Link className="btn btn-primary" to="/movies/new">
-            New Movie
-          </Link>
+          {/* //If user is truthy and having the link */}
+          {user && (
+            <Link className="btn btn-primary" to="/movies/new">
+              New Movie
+            </Link>
+          )}
           <p>Showing {totalCount} in the database.</p>
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
           <MoviesTable

@@ -1,7 +1,9 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import { login } from "../services/authService";
+import auth from "../services/authService";
+// import { render } from "@testing-library/react";
 
 class LoginForm extends Form {
   state = {
@@ -18,11 +20,11 @@ class LoginForm extends Form {
     try {
       const { data } = this.state;
       //obtain the jwt with obj destructuring
-      const { data: jwt } = await login(data.username, data.password);
-      //access local storage and store jwt there : key, value
-      localStorage.setItem("token", jwt);
-      //direct the user back to home
-      window.localStorage = "/";
+      await auth.login(data.username, data.password);
+      //pick the state property from .location
+      const { state } = this.props.location;
+      //if state is defined then redirects user to the custom location: pathname, otherwise to home
+      window.location = state ? state.from.pathname : "/";
     } catch (ex) {
       //check if ex has a response, and if its 400
       if (ex.response && ex.response.status === 400) {
@@ -36,6 +38,10 @@ class LoginForm extends Form {
   };
 
   render() {
+    //If user is logged in, return a redirect component to homepage...
+    if (auth.getCurrentUser()) return <Redirect to="/" />;
+    console.log(auth.getCurrentUser());
+    //...Otherwise, return to login form
     return (
       <React.Fragment>
         <h1>Login</h1>

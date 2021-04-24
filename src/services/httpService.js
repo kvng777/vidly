@@ -6,7 +6,11 @@
 
 import axios from "axios";
 import logger from "./logService";
+// import auth from "./authService";
 import { toast } from "react-toastify";
+
+//this distinguishes how the app is run through which env(dev or prod)
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 axios.interceptors.response.use(null, (error) => {
   const { errorRange } = error.response;
@@ -23,9 +27,16 @@ axios.interceptors.response.use(null, (error) => {
   return Promise.reject(error);
 });
 
+function setJwt(jwt) {
+  //when making http request, need to include this header in the request - allows API authorization
+  //speak to auth, to aquire token: getJwt()
+  axios.defaults.headers.common["x-auth-token"] = jwt;
+}
+
 export default {
   get: axios.get,
   post: axios.post,
   put: axios.put,
-  delete: axios.delete
+  delete: axios.delete,
+  setJwt
 };

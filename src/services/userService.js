@@ -1,8 +1,8 @@
 import http from "./httpService";
-import { apiUrl } from "../config.json";
+// import { apiUrl } from "../config.json";
 
 //url of the users page
-const apiEndPoint = apiUrl + "/users";
+const apiEndPoint = "/users";
 
 //export the function to register
 export function register(user) {
