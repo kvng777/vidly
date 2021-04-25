@@ -46,8 +46,8 @@ class LoginForm extends Form {
       <React.Fragment>
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput("username", "Username", "text", true)}
-          {this.renderInput("password", "Password", "password")}
+          {this.renderInput("username", "Username", "text", "admin@vidly.com")}
+          {this.renderInput("password", "Password", "password", "123456")}
           {this.renderButton("Login")}
         </form>
       </React.Fragment>
