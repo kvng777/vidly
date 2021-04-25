@@ -45,49 +45,32 @@ div > p {
   width: max-content;
 }
 
-body {
-  background: linear-gradient(270deg, #53d6dd, #39c5cc, #22b2b9);
-  background-size: 600% 600%;
-
-  -webkit-animation: AnimationName 5s ease infinite;
-  -moz-animation: AnimationName 5s ease infinite;
-  animation: AnimationName 5s ease infinite;
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-image: url(vidlybg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-@-webkit-keyframes AnimationName {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-@-moz-keyframes AnimationName {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.content {
+  margin-bottom: auto;
 }
 
-td > a {
-  color: slateblue !important;
+.footer {
+  /* flex-shrink: 0; */
+  background-color: lightgrey;
+}
+
+/* .list-group {
+  cursor: pointer;
+} */
+
+.list-group:hover {
+  cursor: pointer;
+}
+
+.list-group-item:hover {
+  background-color: lightskyblue;
 }

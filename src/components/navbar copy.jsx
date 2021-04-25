@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Collapse,
   Navbar,
@@ -16,20 +16,28 @@ import {
 import { Link } from "react-router-dom";
 
 const NavBar = ({ user }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
-
   return (
-    <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/movies">Vidly</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/movies">Movies</NavLink>
-            </NavItem>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
+        <h1 className="mx-2">Vidly</h1>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/">
+                Movies
+              </Link>
+            </li>
             {/* //If theres no user, then render the Login and Register links */}
             {!user && (
               <React.Fragment>
@@ -60,10 +68,10 @@ const NavBar = ({ user }) => {
                 </li>
               </React.Fragment>
             )}
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 
